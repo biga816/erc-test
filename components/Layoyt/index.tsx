@@ -12,14 +12,22 @@ export const Layout = (props) => (
   <div className="App">
     <ResetStyles />
     <ThemeProvider theme={themes.default}>
-      <Header />
-      <div style={{ width: "100vw", height: "100vh", position: "relative", background: 'teal' }}>
+      <div className="container">
         {props.children}
+        <Header />
       </div>
     </ThemeProvider>
     <style jsx global>
       {globalStyles}
     </style>
+    <style jsx>{`
+      .container {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        background: teal;
+      }
+    `}</style>
   </div>
 );
 
