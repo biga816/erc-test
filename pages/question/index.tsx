@@ -1,90 +1,76 @@
 import { NextPage} from 'next';
-import {
-  Toolbar,
-  TextField,
-  Button,
-  Fieldset,
-  Window,
-  WindowHeader,
-  WindowContent
-} from "react95";
+import Router from 'next/router'
+import { useEffect, useState } from 'react'
+import { Hourglass } from "react95";
+import firebase from "firebase";
 
 import Layoyt from "../../components/Layoyt";
+import { IERC } from "../../interfaces/IERC";
+import QuestionWindow from './QuestionWindow';
+import AnswerWindow from './AnswerWindow';
 
-const Question: NextPage = () => (
-  <Layoyt>
-    <Window style={{ width: "95%", maxWidth: 400, maxHeight: 440, position: "absolute", left: 0, right:0, top: 0, bottom: 0, margin: "auto" }}>
-        <WindowHeader
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <span>question.1</span>
-        <Button style={{ marginRight: '-6px', marginTop: '1px' }} size={'sm'} square>
-          <span style={{ fontWeight: 'bold', transform: 'translateY(-1px)' }}>x</span>
-        </Button>
-      </WindowHeader>
-      <WindowContent>
-        <div style={{ height: 60 }}>
-          <p style={{ lineHeight: 1.3 }}>
-          ENS support for reverse resolution of Ethereum addresses
-          </p>
-        </div>
-        <Fieldset label="Answer" style={{ marginTop: '1.5rem' }}>
-          <label style={{ paddingRight: '0.5rem', fontSize: '1rem' }}>This is ERC</label>
-          <TextField variant="flat" width={150} />
-        </Fieldset>
-      </WindowContent>
-      <Toolbar>
-        <Button variant="menu" size="lg" fullWidth>
-          1
-        </Button>
-        {/* <Divider vertical /> */}
-        <Button variant="menu" size="lg" fullWidth>
-          2
-        </Button>
-        {/* <Divider vertical /> */}
-        <Button variant="menu" size="lg" fullWidth>
-          3
-        </Button>
-      </Toolbar>
-      <Toolbar>
-        <Button variant="menu" size="lg" fullWidth>
-          4
-        </Button>
-        <Button variant="menu" size="lg" fullWidth>
-          5
-        </Button>
-        <Button variant="menu" size="lg" fullWidth>
-          6
-        </Button>
-      </Toolbar>
-      <Toolbar>
-        <Button variant="menu" size="lg" fullWidth>
-          7
-        </Button>
-        <Button variant="menu" size="lg" fullWidth>
-          8
-        </Button>
-        <Button variant="menu" size="lg" fullWidth>
-          9
-        </Button>
-      </Toolbar>
-      <Toolbar>
-        <Button size="lg" fullWidth>
-          Clear
-        </Button>
-        <Button variant="menu" size="lg" fullWidth>
-          0
-        </Button>
-        <Button size="lg" fullWidth>
-          Go
-        </Button>
-      </Toolbar>
-    </Window>
-  </Layoyt>
-);
+const Question: NextPage = () => {
+  const [list, setList] = useState([] as IERC[]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [isCollect, setIsCollect] = useState(false);
+
+  useEffect(() => {
+    (async() => {
+      try {
+        const db = firebase.firestore();
+        const ercs = await db.collection('ercs').get();
+        console.log(ercs.docs.map((doc) => (doc.data())));
+        setList(ercs.docs.map((doc) => (doc.data() as IERC)));
+        setCurrentIndex(0);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
+
+  const answer = (result: string) => {
+    setIsAnswered(true);
+    setIsCollect(result === list[currentIndex].eip);
+  }
+
+  const next = () => {    
+    // if (currentIndex < list.length - 1) {
+    if (currentIndex < 2) {
+      setCurrentIndex(currentIndex + 1);
+      setIsAnswered(false);        
+    } else {
+      Router.push('/result')
+    }
+  }
+
+  if (list.length === 0) {
+    return (
+      <Layoyt>
+        <Hourglass className="center"/>
+        <style jsx>{`
+          :global(.center) {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+          }
+        `}</style>
+      </Layoyt>
+    );
+  }
+
+  return (
+    <Layoyt>
+      {
+        currentIndex >= 0 && !isAnswered
+        ? <QuestionWindow erc={list[currentIndex]} index={currentIndex} onAnswer={answer}/>
+        : <AnswerWindow isCollect={isCollect} erc={list[currentIndex]} onNext={next}/>
+      }
+    </Layoyt>
+  )
+};
 
 export default Question;

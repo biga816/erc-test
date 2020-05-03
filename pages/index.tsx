@@ -1,12 +1,25 @@
 import { NextPage } from 'next';
 import Router from 'next/router'
-import { useEffect, useState } from 'react'
 import { Button } from "react95";
+import firebase from "firebase";
 
 import Layoyt from "../components/Layoyt";
 
 const Home: NextPage<{ userAgent: string }> = () => {
-  const [name, setName] = useState('');
+  const firebaseConfig = {
+    apiKey: "AIzaSyBJkI3kT0sSqxeh2W9oFpFlvtlnJ_egEpg",
+    authDomain: "erc-checker.firebaseapp.com",
+    databaseURL: "https://erc-checker.firebaseio.com",
+    projectId: "erc-checker",
+    storageBucket: "erc-checker.appspot.com",
+    messagingSenderId: "320091365764",
+    appId: "1:320091365764:web:7ce652b1f3887ded1b7dd1",
+    measurementId: "G-J24Z1V1R48"
+  };
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
 
   return (
     <Layoyt>
@@ -22,14 +35,15 @@ const Home: NextPage<{ userAgent: string }> = () => {
             Let's test your ERC knowledge.
           </p>
         </div>
-        <Button
-          fullWidth
-          size="lg"
-          onClick={() => Router.push('/question')}
-          style={{ marginLeft: '2px' }}
-        >
-          Start
-        </Button>
+        <div style={{textAlign: "center"}}>
+          <Button
+            size="lg"
+            onClick={() => Router.push('/question')}
+            style={{ marginLeft: '2px', width: "200px" }}
+          >
+            Start
+          </Button>
+        </div>
       </div>
       <style jsx>{`
         .title {
@@ -43,7 +57,7 @@ const Home: NextPage<{ userAgent: string }> = () => {
         .container {
           width: 95%;
           max-width: 400px;
-          max-height: 420px;
+          max-height: 440px;
           position: absolute;
           left: 0;
           right:0;
@@ -58,8 +72,8 @@ const Home: NextPage<{ userAgent: string }> = () => {
         }
         .top-image img {
           object-fit: cover;
-          width: 180px;
-          height: 180px;
+          width: 100px;
+          height: 100px;
           border-radius: 8px;
         }
       `}</style>

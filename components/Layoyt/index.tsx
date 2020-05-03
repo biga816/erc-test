@@ -26,6 +26,9 @@ export const Layout = (props) => (
         height: 100vh;
         position: relative;
         background: teal;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     `}</style>
   </div>
