@@ -41,7 +41,7 @@ const Home: NextPage<{ userAgent: string }> = () => {
             onClick={() => Router.push('/question')}
             style={{ marginLeft: '2px', width: "200px" }}
           >
-            Start
+            START
           </Button>
         </div>
       </div>
@@ -57,7 +57,7 @@ const Home: NextPage<{ userAgent: string }> = () => {
         .container {
           width: 95%;
           max-width: 400px;
-          max-height: 440px;
+          max-height: 380px;
           position: absolute;
           left: 0;
           right:0;
@@ -72,9 +72,8 @@ const Home: NextPage<{ userAgent: string }> = () => {
         }
         .top-image img {
           object-fit: cover;
-          width: 100px;
+          width: 120px;
           height: 100px;
-          border-radius: 8px;
         }
       `}</style>
     </Layoyt>

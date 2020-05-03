@@ -5,49 +5,42 @@ import {
   ListItem,
   Button,
 } from "react95";
+import Icon from "../../Icon";
 
 function Menu() {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   function handleClick() {
-    setOpen(!open);
+    setIsOpen(!isOpen);
   }
 
   function handleClose() {
-    setOpen(false);
+    setIsOpen(false);
+  }
+
+  function open(url: string) {
+    window.open(url);
   }
 
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
-      {open && (
-        <List horizontalAlign="left" verticalAlign="top" open={open} onClick={handleClose}>
-          <ListItem onClick={() => Router.push('/')}>🚀 Home</ListItem>
-          <ListItem>📁 Github</ListItem>
-          <ListItem>👨‍💻 Author</ListItem>
-          {/* <Divider />
-          <ListItem disabled>🔙 Logout</ListItem> */}
+      {isOpen && (
+        <List horizontalAlign="left" verticalAlign="top" open={isOpen} onClick={handleClose}>
+          <ListItem onClick={() => Router.push('/')}>
+            <Icon src="/static/img/computer.png" />Home
+          </ListItem>
+          <ListItem onClick={() => open("https://github.com/biga816/erc-test")}>
+            <Icon src="/static/img/web.png" />Github
+          </ListItem>
+          <ListItem onClick={() => open("https://twitter.com/biga816")}>
+          <Icon src="/static/img/user.png" />Author
+          </ListItem>
         </List>
       )}
-      <Button onClick={handleClick} active={open} style={{ fontWeight: 'bold' }}>
-        {/* <LogoIcon style={{ marginLeft: -2, marginRight: 4 }} /> */}
-        <span className="logo-icon">
-          <img className="logo-img" src="/static/img/windows.png"/>
-        </span>
+      <Button onClick={handleClick} active={isOpen} style={{ fontWeight: 'bold' }}>
+        <Icon src="/static/img/windows.png" />
         Menu
       </Button>
-
-      <style jsx>{`
-        .logo-icon {
-          margin-left: -2px;
-          margin-right: 4px;
-          display: inline-block;
-          height: 22px;
-        }
-        .logo-img {
-          height: 100%;
-          width: auto;
-        }
-      `}</style>
     </div>
   );
 }

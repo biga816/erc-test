@@ -22,7 +22,7 @@ const QuestionWindow = (props: {erc: IERC, index: number, onAnswer: (result: str
     <Window style={{ width: "95%", maxWidth: 400, maxHeight: 440 }}>
       <WindowHeader>Question {props.index + 1}</WindowHeader>
       <WindowContent>
-        <div style={{ height: 60 }}>
+        <div style={{ height: 40 }}>
           <p style={{ lineHeight: 1.3 }}>
           {/* ENS support for reverse resolution of Ethereum addresses */}
           {props.erc.title}

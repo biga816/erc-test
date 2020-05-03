@@ -18,4 +18,7 @@ export default css.global`
   body {
     font-family: PixelMplus!important;
   }
+  button {
+    font-family: PixelMplus-Bold!important;
+  }
 `;

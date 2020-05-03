@@ -35,8 +35,7 @@ const Question: NextPage = () => {
   }
 
   const next = () => {    
-    // if (currentIndex < list.length - 1) {
-    if (currentIndex < 2) {
+    if (currentIndex < list.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setIsAnswered(false);        
     } else {

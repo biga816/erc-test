@@ -3,6 +3,7 @@ import { reset, themes } from "react95";
 import globalStyles from '../../styles/global'
 
 import Header from "./Header";
+import DesktopIcon from "./DesktopIcon";
 
 const ResetStyles = createGlobalStyle`
   ${reset}
@@ -12,6 +13,9 @@ export const Layout = (props) => (
   <div className="App">
     <ResetStyles />
     <ThemeProvider theme={themes.default}>
+      <div className="background">
+        <DesktopIcon src="/static/img/computer.png">My<br />Computer</DesktopIcon>
+      </div>
       <div className="container">
         {props.children}
         <Header />
@@ -21,11 +25,16 @@ export const Layout = (props) => (
       {globalStyles}
     </style>
     <style jsx>{`
+      .background {
+        width: 100vw;
+        height: 100vh;background: teal;
+      }
       .container {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100vw;
         height: 100vh;
-        position: relative;
-        background: teal;
         display: flex;
         justify-content: center;
         align-items: center;
