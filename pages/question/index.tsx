@@ -19,9 +19,13 @@ const Question: NextPage = () => {
     (async() => {
       try {
         const db = firebase.firestore();
-        const ercs = await db.collection('ercs').get();
-        console.log(ercs.docs.map((doc) => (doc.data())));
-        setList(ercs.docs.map((doc) => (doc.data() as IERC)));
+        const ercsData = await db.collection('ercs').get();
+        const ercs = ercsData.docs.map((doc) => {
+          let erc = doc.data() as IERC;
+          erc.title = erc.title.split(' ').filter((value) => value.indexOf('ERC') === -1).join(' ');
+          return erc;
+        });
+        setList(ercs.sort(() => (Math.random() - 0.5)));
         setCurrentIndex(0);
       } catch (error) {
         console.error(error);
