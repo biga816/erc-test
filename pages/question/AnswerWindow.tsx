@@ -16,9 +16,9 @@ const AnswerWindow = (props: {isCollect: boolean, erc: IERC, onNext: () => void}
       <WindowContent>
         <div>
           { props.isCollect ? "That’s right!" : "That's wrong..." }<br/>
-          ERC {props.erc.eip} was correct.<br/>
+          ERC {props.erc?.eip} was correct.<br/>
           <br/>
-          <Anchor href={props.erc.url} target="_blank">Show detail</Anchor>
+          <Anchor href={props.erc?.url} target="_blank">Show detail</Anchor>
         </div>
       </WindowContent>
       <Toolbar>

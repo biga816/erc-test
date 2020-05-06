@@ -3,10 +3,12 @@ import Router from 'next/router'
 import { Button } from "react95";
 
 import Layoyt from "../components/Layoyt";
+import Head from "../components/Head";
 
 const Home: NextPage<{ userAgent: string }> = () => {
   return (
     <Layoyt>
+      <Head />
       <div className="container">
         <div className="pixel-mplus">
           <h2 className="title">ERC TEST</h2>

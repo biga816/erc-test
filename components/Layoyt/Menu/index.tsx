@@ -7,7 +7,7 @@ import {
 } from "react95";
 import Icon from "../../Icon";
 
-function Menu() {
+export default () => {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleClick() {
@@ -44,5 +44,3 @@ function Menu() {
     </div>
   );
 }
-
-export default Menu;

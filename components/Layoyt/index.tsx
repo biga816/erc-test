@@ -9,7 +9,7 @@ const ResetStyles = createGlobalStyle`
   ${reset}
 `;
 
-export const Layout = (props) => (
+export default (props) => (
   <div className="App">
     <ResetStyles />
     <ThemeProvider theme={themes.default}>
@@ -42,5 +42,3 @@ export const Layout = (props) => (
     `}</style>
   </div>
 );
-
-export default Layout

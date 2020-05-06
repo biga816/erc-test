@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-const DesktopIcon = (props: {src: string, children: any}) => (
+export default (props: {src: string, children: any}) => (
   <Fragment>
     <div className="icon">
       <img src={props.src}/>
@@ -14,6 +14,4 @@ const DesktopIcon = (props: {src: string, children: any}) => (
       }
     `}</style>
   </Fragment>
-)
-
-export default DesktopIcon;
+);

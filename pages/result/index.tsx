@@ -1,13 +1,14 @@
 import { NextPage} from 'next';
-import Router from 'next/router'
 import { useEffect, useState } from 'react'
-import { Button, Fieldset, Window, WindowContent, WindowHeader } from "react95";
 
 import Layoyt from "../../components/Layoyt";
+import Head from "../../components/Head";
 import { globalQuery } from "../../state/global";
+import ResultWindow from "./ResultWindow";
 
 const Result: NextPage = () => {
   const [score, setScore] = useState(0);
+  const link = `http://twitter.com/share?url=https://erc-checker.web.app/result/score${score}.html&text=ERC TEST: Your Score is ${score} / 10&hashtags=ErcTest`;
 
   useEffect(() => {
     const subscription = globalQuery.score$.subscribe((score) => setScore(score));
@@ -17,30 +18,8 @@ const Result: NextPage = () => {
 
   return (
     <Layoyt>
-      <Window>
-      <WindowHeader
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <span>Result</span>
-        <Button
-          style={{ marginRight: '-6px', marginTop: '1px' }}
-          size={'sm'}
-          square
-          onClick={() => Router.push('/')}
-        >
-          <span style={{ fontWeight: 'bold', transform: 'translateY(-1px)' }}>x</span>
-        </Button>
-      </WindowHeader>
-        <WindowContent>
-          <Fieldset label="Youre score is">
-            <h2 style={{fontSize: "2rem", margin: "0 8px"}}>{score} / 10</h2>
-          </Fieldset>
-        </WindowContent>
-      </Window>
+      <Head />
+      <ResultWindow score={score} link={link}/>
     </Layoyt>
   )
 };

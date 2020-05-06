@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Hourglass } from "react95";
 
 import Layoyt from "../../components/Layoyt";
+import Head from "../../components/Head";
 import { questionService, questionQuery } from "../../state/question";
 import { globalService } from "../../state/global";
 import { IERC } from "../../interfaces/IERC";
@@ -37,7 +38,7 @@ const Question: NextPage = () => {
   }
 
   const next = () => {    
-    if (currentIndex < list.length - 1) {
+    if (currentIndex < 9) {
       setCurrentIndex(currentIndex + 1);
       setIsAnswered(false);        
     } else {
@@ -48,6 +49,7 @@ const Question: NextPage = () => {
   if (list.length === 0) {
     return (
       <Layoyt>
+        <Head />
         <Hourglass className="center"/>
         <style jsx>{`
           :global(.center) {

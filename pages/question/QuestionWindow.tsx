@@ -47,8 +47,8 @@ const QuestionWindow = (props: {erc: IERC, index: number, onAnswer: (result: str
       <WindowHeader>Question {props.index + 1}</WindowHeader>
       <WindowContent>
         <div style={{ height: 52 }}>
-          <p style={{fontSize: '12px', marginBottom: '4px'}}>Created: {props.erc.created}</p>
-          <p>{props.erc.title}</p>
+          <p style={{fontSize: '12px', marginBottom: '4px'}}>Created: {props.erc?.created}</p>
+          <p>{props.erc?.title}</p>
         </div>
         <Fieldset label="Answer" style={{ marginTop: '1.5rem' }}>
           <label style={{ paddingRight: '0.5rem', fontSize: '1rem' }}>This ERC is</label>

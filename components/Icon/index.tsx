@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-const Icon = (props: {src: string}) => (
+export default (props: {src: string}) => (
   <Fragment>
     <span className="logo-icon">
       <img className="logo-img" src={props.src}/>
@@ -20,6 +20,4 @@ const Icon = (props: {src: string}) => (
       }
     `}</style>
   </Fragment>
-)
-
-export default Icon;
+);

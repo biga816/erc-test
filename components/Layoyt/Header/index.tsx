@@ -2,7 +2,7 @@ import Router from 'next/router'
 import { AppBar, Toolbar, Button } from "react95";
 import Menu from "../Menu";
 
-const Header = () => (
+export default () => (
   <AppBar className="header">
     <Toolbar className="toolbar">
       <Menu />
@@ -21,5 +21,3 @@ const Header = () => (
     `}</style>
   </AppBar>
   )
-
-export default Header;

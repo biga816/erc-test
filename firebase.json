@@ -1,0 +1,23 @@
+{
+  "hosting": {
+    "predeploy": [
+      "npm run export"
+    ],
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/result",
+        "destination": "/result.html"
+      },
+      {
+        "source": "/question",
+        "destination": "/question.html"
+      }
+    ]
+  }
+}

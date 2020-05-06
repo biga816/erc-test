@@ -1,5 +1,6 @@
 # next.js build output
 .next
+out
 
 # dotenv environment variables file (build for Zeit Now)
 .env
@@ -12,3 +13,6 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Firebase
+.firebase
