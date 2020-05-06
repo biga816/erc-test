@@ -24,9 +24,17 @@ export class QuestionService {
    */
   async getErcs(): Promise<void> {
     const ercsData = await getFirestoreData('ercs')
+
+    const replaceErcText = (value: string): string => {
+      if(value.indexOf('ERC') > -1) {
+        value = value.replace(/[0-9]/g, 'X')
+      }
+      return value;
+    };
+
     let ercs = ercsData.docs.map((doc) => {
       let erc = doc.data() as IERC;
-      erc.title = erc.title.split(' ').filter((value) => value.indexOf('ERC') === -1).join(' ');
+      erc.title = erc.title.split(' ').map((value) => replaceErcText(value)).join(' ');
       return erc;
     });
     ercs = ercs.sort(() => (Math.random() - 0.5))

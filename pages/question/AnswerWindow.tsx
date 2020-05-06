@@ -1,9 +1,8 @@
 import Router from 'next/router'
 import {
+  Anchor,
   Toolbar,
-  TextField,
   Button,
-  Fieldset,
   Window,
   WindowHeader,
   WindowContent
@@ -15,12 +14,12 @@ const AnswerWindow = (props: {isCollect: boolean, erc: IERC, onNext: () => void}
     <Window>
       <WindowHeader>Answer</WindowHeader>
       <WindowContent>
-        {
-          props.isCollect
-            ?<div>That’s right!</div>
-            : <div>That's wrong...</div>
-        }
-        <div>ERC {props.erc.eip} was correct.</div>
+        <div>
+          { props.isCollect ? "That’s right!" : "That's wrong..." }<br/>
+          ERC {props.erc.eip} was correct.<br/>
+          <br/>
+          <Anchor href={props.erc.url} target="_blank">Show detail</Anchor>
+        </div>
       </WindowContent>
       <Toolbar>
         <Button
