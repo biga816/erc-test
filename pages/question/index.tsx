@@ -2,9 +2,10 @@ import { NextPage} from 'next';
 import Router from 'next/router'
 import { useEffect, useState } from 'react'
 import { Hourglass } from "react95";
-import firebase from "firebase";
 
 import Layoyt from "../../components/Layoyt";
+import { questionService, questionQuery } from "../../state/question";
+import { globalService } from "../../state/global";
 import { IERC } from "../../interfaces/IERC";
 import QuestionWindow from './QuestionWindow';
 import AnswerWindow from './AnswerWindow';
@@ -16,26 +17,23 @@ const Question: NextPage = () => {
   const [isCollect, setIsCollect] = useState(false);
 
   useEffect(() => {
-    (async() => {
-      try {
-        const db = firebase.firestore();
-        const ercsData = await db.collection('ercs').get();
-        const ercs = ercsData.docs.map((doc) => {
-          let erc = doc.data() as IERC;
-          erc.title = erc.title.split(' ').filter((value) => value.indexOf('ERC') === -1).join(' ');
-          return erc;
-        });
-        setList(ercs.sort(() => (Math.random() - 0.5)));
-        setCurrentIndex(0);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
+    setCurrentIndex(0);
+    questionService.getErcs();
+    const subscription = questionQuery.ercs$.subscribe((erc) => setList(erc));
+    return () => {
+      subscription.unsubscribe();
+      questionService.clearErcs();
+    };
   }, []);
 
   const answer = (result: string) => {
     setIsAnswered(true);
-    setIsCollect(result === list[currentIndex].eip);
+    const isCollect = result === list[currentIndex].eip;
+    setIsCollect(isCollect);
+
+    if (isCollect) {
+      globalService.incrementScore();
+    }
   }
 
   const next = () => {    

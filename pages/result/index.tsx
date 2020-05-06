@@ -1,10 +1,19 @@
 import { NextPage} from 'next';
 import Router from 'next/router'
+import { useEffect, useState } from 'react'
 import { Button, Fieldset, Window, WindowContent, WindowHeader } from "react95";
 
 import Layoyt from "../../components/Layoyt";
+import { globalQuery } from "../../state/global";
 
 const Result: NextPage = () => {
+  const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    const subscription = globalQuery.score$.subscribe((score) => setScore(score));
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   return (
     <Layoyt>
@@ -28,7 +37,7 @@ const Result: NextPage = () => {
       </WindowHeader>
         <WindowContent>
           <Fieldset label="Youre score is">
-            <h2 style={{fontSize: "2rem", margin: "0 8px"}}>10 / 10</h2>
+            <h2 style={{fontSize: "2rem", margin: "0 8px"}}>{score} / 10</h2>
           </Fieldset>
         </WindowContent>
       </Window>
