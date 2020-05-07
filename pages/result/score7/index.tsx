@@ -5,7 +5,7 @@ import Head from "../../../components/Head";
 import ResultWindow from "../ResultWindow";
 
 const Result: NextPage = () => {
-  const image = "https://erc-checker.web.app/static/img/ogp/score7.png";
+  const image = "https://erc-checker.web.app/img/ogp/score7.png";
   return (
     <Layoyt>
       <Head image={image}/>

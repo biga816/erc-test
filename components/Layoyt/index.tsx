@@ -14,7 +14,7 @@ export default (props) => (
     <ResetStyles />
     <ThemeProvider theme={themes.default}>
       <div className="background">
-        <DesktopIcon src="/static/img/computer.png">My<br />Computer</DesktopIcon>
+        <DesktopIcon src="/img/computer.png">My<br />Computer</DesktopIcon>
       </div>
       <div className="container">
         {props.children}

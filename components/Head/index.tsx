@@ -11,7 +11,7 @@ interface Props {
 const TITLE = 'ERC Test';
 const DESCRIPTION = 'This is a website to check your ERC knowledge.';
 const KEYWORD = 'erc,ehtereum';
-const IMAGE = 'https://erc-checker.web.app/static/img/ogp/main.png'
+const IMAGE = 'https://erc-checker.web.app/img/ogp/main.png'
 const URL = 'https://erc-checker.web.app'
 
 export default ({

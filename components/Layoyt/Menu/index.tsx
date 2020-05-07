@@ -27,18 +27,18 @@ export default () => {
       {isOpen && (
         <List horizontalAlign="left" verticalAlign="top" open={isOpen} onClick={handleClose}>
           <ListItem onClick={() => Router.push('/')}>
-            <Icon src="/static/img/computer.png" />Home
+            <Icon src="/img/computer.png" />Home
           </ListItem>
           <ListItem onClick={() => open("https://github.com/biga816/erc-test")}>
-            <Icon src="/static/img/web.png" />Github
+            <Icon src="/img/web.png" />Github
           </ListItem>
           <ListItem onClick={() => open("https://twitter.com/biga816")}>
-          <Icon src="/static/img/user.png" />Author
+          <Icon src="/img/user.png" />Author
           </ListItem>
         </List>
       )}
       <Button onClick={handleClick} active={isOpen} style={{ fontWeight: 'bold' }}>
-        <Icon src="/static/img/windows.png" />
+        <Icon src="/img/windows.png" />
         Menu
       </Button>
     </div>

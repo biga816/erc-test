@@ -13,7 +13,7 @@ const Home: NextPage<{ userAgent: string }> = () => {
         <div className="pixel-mplus">
           <h2 className="title">ERC TEST</h2>
           <div className="top-image">
-            <img src="/static/img/vitalik.gif"/>
+            <img src="/img/vitalik.gif"/>
           </div>
           <p className="description">
             ERC is Application-level standards and conventions
