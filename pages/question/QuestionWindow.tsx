@@ -54,6 +54,7 @@ const QuestionWindow = (props: {erc: IERC, index: number, onAnswer: (result: str
           <label style={{ paddingRight: '0.5rem', fontSize: '1rem' }}>This ERC is</label>
           <TextField
             variant="flat"
+            type="tel"
             width={130}
             value={erc}
             onChange={handleChange}

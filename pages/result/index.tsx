@@ -8,7 +8,7 @@ import ResultWindow from "./ResultWindow";
 
 const Result: NextPage = () => {
   const [score, setScore] = useState(0);
-  const link = `http://twitter.com/share?url=https://erc-checker.web.app/result/score${score}.html&text=ERC TEST: Your Score is ${score} / 10&hashtags=ErcTest`;
+  const link = `http://twitter.com/share?url=https://erc-checker.web.app/result/score${score}.html&text=ERC TEST: Your score is ${score} / 10&hashtags=ErcTest`;
 
   useEffect(() => {
     const subscription = globalQuery.score$.subscribe((score) => setScore(score));
