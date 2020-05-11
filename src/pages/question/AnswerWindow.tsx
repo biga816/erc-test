@@ -9,23 +9,29 @@ import {
 } from "react95";
 import { IERC } from '../../interfaces/IERC';
 
-const AnswerWindow = (props: {isCollect: boolean, erc: IERC, onNext: () => void}) => {
+interface Props {
+  isCollect: boolean;
+  erc: IERC;
+  onNext: () => void;
+}
+
+const AnswerWindow = ({isCollect, erc, onNext}: Props) => {
   return (
     <Window>
       <WindowHeader>Answer</WindowHeader>
       <WindowContent>
         <div>
-          { props.isCollect ? "That’s right!" : "That's wrong..." }<br/>
-          ERC {props.erc?.eip} was correct.<br/>
+          { isCollect ? "That’s right!" : "That's wrong..." }<br/>
+          ERC {erc?.eip} was correct.<br/>
           <br/>
-          <Anchor href={props.erc?.url} target="_blank">Show detail</Anchor>
+          <Anchor href={erc?.url} target="_blank">Show detail</Anchor>
         </div>
       </WindowContent>
       <Toolbar>
         <Button
           fullWidth
           size="lg"
-          onClick={props.onNext}
+          onClick={onNext}
           style={{ marginLeft: '2px' }}
         >
           NEXT

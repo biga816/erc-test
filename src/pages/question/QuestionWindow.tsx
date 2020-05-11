@@ -10,13 +10,19 @@ import {
 } from "react95";
 import { IERC } from '../../interfaces/IERC';
 
-const QuestionWindow = (props: {erc: IERC, index: number, onAnswer: (result: string) => void}) => {
-  const [erc, setErc] = useState('');
+interface Props {
+  erc: IERC;
+  index: number;
+  onAnswer: (result: string) => void;
+}
 
-  const answer = (): void => props.onAnswer(erc);
-  const clear = (): void => setErc('');
-  const push = (value: string): void => setErc(erc + value);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => setErc(e.target.value);
+const QuestionWindow = ({erc, index, onAnswer}: Props) => {
+  const [value, setValue] = useState('');
+
+  const answer = (): void => onAnswer(value);
+  const clear = (): void => setValue('');
+  const push = (value: string): void => setValue(value + value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => setValue(e.target.value);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key == 'Enter') {
@@ -44,11 +50,11 @@ const QuestionWindow = (props: {erc: IERC, index: number, onAnswer: (result: str
 
   return (
     <Window style={{ width: "95%", maxWidth: 400, maxHeight: 440 }}>
-      <WindowHeader>Question {props.index + 1}</WindowHeader>
+      <WindowHeader>Question {index + 1}</WindowHeader>
       <WindowContent>
         <div style={{ height: 52 }}>
-          <p style={{fontSize: '12px', marginBottom: '4px'}}>Created: {props.erc?.created}</p>
-          <p>{props.erc?.title}</p>
+          <p style={{fontSize: '12px', marginBottom: '4px'}}>Created: {erc?.created}</p>
+          <p>{erc?.title}</p>
         </div>
         <Fieldset label="Answer" style={{ marginTop: '1.5rem' }}>
           <label style={{ paddingRight: '0.5rem', fontSize: '1rem' }}>This ERC is</label>
@@ -56,7 +62,7 @@ const QuestionWindow = (props: {erc: IERC, index: number, onAnswer: (result: str
             variant="flat"
             type="tel"
             width={130}
-            value={erc}
+            value={value}
             onChange={handleChange}
             onKeyDown={ handleKeyDown }
           />

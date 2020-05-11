@@ -1,10 +1,15 @@
 import { Fragment } from "react";
 
-export default (props: {src: string, children: any}) => (
+interface Props {
+  src: string;
+  children: any;
+}
+
+export default ({src, children}: Props) => (
   <Fragment>
     <div className="icon">
-      <img src={props.src}/>
-      <p>{props.children}</p>
+      <img src={src}/>
+      <p>{children}</p>
     </div>
     <style jsx>{`
       .icon {

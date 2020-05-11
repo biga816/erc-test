@@ -1,8 +1,12 @@
 import Router from 'next/router'
 import { Button, Fieldset, Toolbar, Window, WindowContent, WindowHeader } from "react95";
 
-export default (props: {score: number, link?: string}) => {
+interface Props {
+  score: number;
+  link?: string;
+}
 
+export default ({score, link}: Props) => {
   return (
     <Window>
       <WindowHeader
@@ -24,15 +28,15 @@ export default (props: {score: number, link?: string}) => {
       </WindowHeader>
       <WindowContent>
         <Fieldset label="Youre score is">
-          <h2 style={{fontSize: "2rem", margin: "0 8px"}}>{props.score} / 10</h2>
+          <h2 style={{fontSize: "2rem", margin: "0 8px"}}>{score} / 10</h2>
         </Fieldset>
       </WindowContent>
-      { props.link &&
+      { link &&
         <Toolbar>
           <Button
             fullWidth
             size="lg"
-            onClick={() => window.open(props.link)}
+            onClick={() => window.open(link)}
             style={{ marginLeft: '2px' }}
           >
             SHARE ON TWITTER

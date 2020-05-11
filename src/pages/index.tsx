@@ -5,7 +5,7 @@ import { Button } from "react95";
 import Layoyt from "../components/Layoyt";
 import Head from "../components/Head";
 
-const Home: NextPage<{ userAgent: string }> = () => {
+const Home: NextPage = () => {
   return (
     <Layoyt>
       <Head />
