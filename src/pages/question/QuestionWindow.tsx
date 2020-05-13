@@ -21,7 +21,7 @@ const QuestionWindow = ({erc, index, onAnswer}: Props) => {
 
   const answer = (): void => onAnswer(value);
   const clear = (): void => setValue('');
-  const push = (value: string): void => setValue(value + value);
+  const push = (input: string): void => setValue(value + input);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => setValue(e.target.value);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
